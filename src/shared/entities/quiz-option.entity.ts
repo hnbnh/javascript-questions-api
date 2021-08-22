@@ -6,9 +6,9 @@ export class QuizOptionEntity {
   @ManyToOne({ primary: true })
   quiz!: QuizEntity;
 
-  @Property()
+  @Property({ primary: true })
   label!: string;
 
-  @Property()
+  @Property({ columnType: 'text' })
   option!: string;
 }
