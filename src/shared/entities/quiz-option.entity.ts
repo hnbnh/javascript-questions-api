@@ -1,10 +1,10 @@
 import { Entity, ManyToOne, Property } from '@mikro-orm/core';
-import { QuizEntity } from './quiz.entity';
+import { QuizTranslationEntity } from './quiz-translation.entity';
 
 @Entity()
 export class QuizOptionEntity {
   @ManyToOne({ primary: true })
-  quiz!: QuizEntity;
+  quizTranslation!: QuizTranslationEntity;
 
   @Property({ primary: true })
   label!: string;

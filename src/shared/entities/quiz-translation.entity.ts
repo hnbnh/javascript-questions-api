@@ -1,14 +1,18 @@
-import { Collection, Entity, ManyToMany, ManyToOne, Property } from '@mikro-orm/core';
+import { Collection, Entity, ManyToOne, OneToMany, Property } from '@mikro-orm/core';
 import { QuizEntity } from './quiz.entity';
 import { LanguageEntity } from './language.entity';
+import { QuizOptionEntity } from './quiz-option.entity';
 
 @Entity()
 export class QuizTranslationEntity {
   @ManyToOne({ primary: true })
   quiz!: QuizEntity;
 
-  @ManyToMany()
-  language = new Collection<LanguageEntity>(this);
+  @ManyToOne({ primary: true })
+  language!: LanguageEntity;
+
+  @OneToMany(() => QuizOptionEntity, (q) => q.quizTranslation)
+  quizOption = new Collection<QuizOptionEntity>(this);
 
   @Property({ columnType: 'text' })
   question!: string;
