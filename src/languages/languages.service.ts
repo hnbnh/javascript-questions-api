@@ -7,7 +7,7 @@ import { EntityRepository } from '@mikro-orm/core';
 export class LanguagesService {
   constructor(@InjectRepository(LanguageEntity) private readonly languageRepo: EntityRepository<LanguageEntity>) {}
 
-  getAllLanguages() {
+  findAll() {
     return this.languageRepo.findAll();
   }
 }

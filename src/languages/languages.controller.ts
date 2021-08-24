@@ -6,7 +6,7 @@ export class LanguagesController {
   constructor(private readonly languagesService: LanguagesService) {}
 
   @Get()
-  getAllLanguages() {
-    return this.languagesService.getAllLanguages();
+  findAll() {
+    return this.languagesService.findAll();
   }
 }
