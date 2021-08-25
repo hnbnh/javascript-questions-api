@@ -3,7 +3,7 @@ import { QuizTranslationEntity } from './quiz-translation.entity';
 
 @Entity()
 export class QuizOptionEntity {
-  @ManyToOne({ primary: true })
+  @ManyToOne({ primary: true, hidden: true })
   quizTranslation!: QuizTranslationEntity;
 
   @Property({ primary: true })

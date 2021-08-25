@@ -6,8 +6,6 @@ import { LanguageEntity, QuizEntity, QuizOptionEntity, QuizTranslationEntity } f
 
 const logger = new Logger('MikroORM');
 
-console.log('url', process.env.POSTGRES_URL);
-
 const ormConfig: Options = {
   metadataProvider: TsMorphMetadataProvider,
   entities: [LanguageEntity, QuizEntity, QuizOptionEntity, QuizTranslationEntity],

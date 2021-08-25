@@ -5,14 +5,14 @@ import { QuizOptionEntity } from './quiz-option.entity';
 
 @Entity()
 export class QuizTranslationEntity {
-  @ManyToOne({ primary: true })
+  @ManyToOne({ primary: true, hidden: true })
   quiz!: QuizEntity;
 
-  @ManyToOne({ primary: true })
+  @ManyToOne({ primary: true, hidden: true })
   language!: LanguageEntity;
 
   @OneToMany(() => QuizOptionEntity, (q) => q.quizTranslation)
-  quizOption = new Collection<QuizOptionEntity>(this);
+  options = new Collection<QuizOptionEntity>(this);
 
   @Property({ columnType: 'text' })
   question!: string;
