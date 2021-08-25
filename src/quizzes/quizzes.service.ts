@@ -2,30 +2,30 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { QuizEntity } from '../shared';
 import { EntityRepository } from '@mikro-orm/postgresql';
-import { FindQuizDto, FindRandomQuizDto } from './dto';
+import { FindQuizDto } from './dto';
 
 @Injectable()
 export class QuizzesService {
   constructor(@InjectRepository(QuizEntity) private readonly quizRepo: EntityRepository<QuizEntity>) {}
 
-  async find(dto: FindQuizDto) {
-    const { languageId, limit, offset } = dto;
+  async find(id: number, dto: FindQuizDto) {
+    const { limit, offset } = dto;
 
-    return this.quizRepo.findAndCount(
-      { translations: { language: { id: languageId } } },
+    const [data, total] = await this.quizRepo.findAndCount(
+      { translations: { language: { id } } },
       {
         limit,
         offset,
         populate: { translations: { options: true } },
       },
     );
+
+    return { data, total };
   }
 
-  async findRandom(dto: FindRandomQuizDto) {
-    const { languageId } = dto;
-
+  async findRandom(id: number) {
     return this.quizRepo.find(
-      { translations: { language: { id: languageId } } },
+      { translations: { language: { id } } },
       {
         limit: 1,
         populate: { translations: { options: true } },

@@ -1,20 +1,28 @@
-import { Controller, Get, Query, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe, Query, UsePipes, ValidationPipe } from '@nestjs/common';
 import { QuizzesService } from './quizzes.service';
-import { FindQuizDto, FindRandomQuizDto } from './dto';
+import { FindQuizDto } from './dto';
+import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiImplicitQuery } from '@nestjs/swagger/dist/decorators/api-implicit-query.decorator';
 
+@ApiTags('quizzes')
 @Controller('quizzes')
 export class QuizzesController {
   constructor(private readonly quizzesService: QuizzesService) {}
 
-  @Get()
+  @Get(':languageId')
   @UsePipes(new ValidationPipe({ transform: true }))
-  find(@Query() dto: FindQuizDto) {
-    return this.quizzesService.find(dto);
+  @ApiOkResponse({ description: 'Get all quizzes by languageId' })
+  @ApiImplicitQuery({ name: 'languageId', required: false })
+  @ApiImplicitQuery({ name: 'limit', required: false })
+  @ApiImplicitQuery({ name: 'offset', required: false })
+  find(@Param('languageId', new ParseIntPipe()) id: number, @Query() dto: FindQuizDto) {
+    return this.quizzesService.find(id, dto);
   }
 
-  @Get('random')
-  @UsePipes(new ValidationPipe({ transform: true }))
-  findRandom(@Query() dto: FindRandomQuizDto) {
-    return this.quizzesService.findRandom(dto);
+  @Get(':languageId/random')
+  @UsePipes(new ValidationPipe())
+  @ApiOkResponse({ description: 'Get a random quiz by languageId' })
+  findRandom(@Param('languageId', new ParseIntPipe()) id: number) {
+    return this.quizzesService.findRandom(id);
   }
 }
