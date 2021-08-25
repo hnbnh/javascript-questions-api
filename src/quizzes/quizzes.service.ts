@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { QuizEntity } from '../shared';
-import { EntityRepository } from '@mikro-orm/core';
-import { FindQuizDto } from './dto';
+import { EntityRepository } from '@mikro-orm/postgresql';
+import { FindQuizDto, FindRandomQuizDto } from './dto';
 
 @Injectable()
 export class QuizzesService {
@@ -16,11 +16,20 @@ export class QuizzesService {
       {
         limit,
         offset,
-        populate: {
-          translations: {
-            options: true,
-          },
-        },
+        populate: { translations: { options: true } },
+      },
+    );
+  }
+
+  async findRandom(dto: FindRandomQuizDto) {
+    const { languageId } = dto;
+
+    return this.quizRepo.find(
+      { translations: { language: { id: languageId } } },
+      {
+        limit: 1,
+        populate: { translations: { options: true } },
+        orderBy: { 'RANDOM()': 'ASC' },
       },
     );
   }
