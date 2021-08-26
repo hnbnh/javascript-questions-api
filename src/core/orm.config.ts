@@ -14,9 +14,7 @@ const ormConfig: Options = {
   debug: process.env.NODE_ENV === 'development',
   logger: logger.log.bind(logger),
   migrations: { disableForeignKeys: false },
-  driverOptions: {
-    connection: { ssl: { rejectUnauthorized: process.env.SSL_CONNECTION === 'true' } },
-  },
+  driverOptions: process.env.SSL_CONNECTION === 'false' ? { connection: { ssl: { rejectUnauthorized: false } } } : {},
 };
 
 export default ormConfig;

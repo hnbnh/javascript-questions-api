@@ -5,7 +5,7 @@ export const validationSchema = object({
   NODE_ENV: string().valid('development', 'production', 'test').required(),
   PORT: number().default(3000),
   POSTGRES_URL: string().required(),
-  SSL_CONNECTION: boolean().default(true),
+  SSL_CONNECTION: boolean(),
 });
 
 export const apiConfig = registerAs('api-config', () => {
