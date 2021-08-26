@@ -15,7 +15,7 @@ const ormConfig: Options = {
   logger: logger.log.bind(logger),
   migrations: { disableForeignKeys: false },
   driverOptions: {
-    connection: { ssl: { rejectUnauthorized: false } },
+    connection: { ssl: { rejectUnauthorized: process.env.SSL_CONNECTION } },
   },
 };
 
