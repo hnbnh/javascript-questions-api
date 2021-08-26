@@ -13,6 +13,10 @@ const ormConfig: Options = {
   clientUrl: process.env.POSTGRES_URL,
   debug: process.env.NODE_ENV === 'development',
   logger: logger.log.bind(logger),
+  migrations: { disableForeignKeys: false },
+  driverOptions: {
+    connection: { ssl: { rejectUnauthorized: false } },
+  },
 };
 
 export default ormConfig;
