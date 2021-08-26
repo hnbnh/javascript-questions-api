@@ -1,4 +1,4 @@
-# JavaScript Questions Unofficial API
+# An unofficial `javaScript-questions` API
 
 ## Description
 
