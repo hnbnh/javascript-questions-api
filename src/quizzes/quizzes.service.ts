@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@mikro-orm/nestjs';
-import { QuizEntity } from '../shared';
-import { EntityRepository } from '@mikro-orm/postgresql';
-import { FindQuizDto } from './dto';
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@mikro-orm/nestjs";
+import { QuizEntity } from "../shared";
+import { EntityRepository } from "@mikro-orm/postgresql";
+import { FindQuizDto } from "./dto";
 
 @Injectable()
 export class QuizzesService {
@@ -29,7 +29,7 @@ export class QuizzesService {
       {
         limit: 1,
         populate: { translations: { options: true } },
-        orderBy: { 'RANDOM()': 'ASC' },
+        orderBy: { "RANDOM()": "ASC" },
       },
     );
   }

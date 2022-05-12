@@ -1,5 +1,5 @@
-import { Collection, Entity, OneToMany, PrimaryKey, Property } from '@mikro-orm/core';
-import { QuizTranslationEntity } from './quiz-translation.entity';
+import { Collection, Entity, OneToMany, PrimaryKey, Property } from "@mikro-orm/core";
+import { QuizTranslationEntity } from "./quiz-translation.entity";
 
 @Entity()
 export class QuizEntity {
@@ -9,6 +9,6 @@ export class QuizEntity {
   @OneToMany(() => QuizTranslationEntity, (q) => q.quiz)
   translations = new Collection<QuizTranslationEntity>(this);
 
-  @Property({ columnType: 'text' })
+  @Property({ columnType: "text" })
   code?: string;
 }

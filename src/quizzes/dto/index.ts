@@ -1,1 +1,1 @@
-export * from './find-quiz.dto';
+export * from "./find-quiz.dto";
