@@ -1,9 +1,8 @@
-# An unofficial `javaScript-questions` API
+# Unofficial JavaScript Questions API
 
 ## Description
 
-An unofficial API of a well-known repository [
-javascript-questions ](https://github.com/lydiahallie/javascript-questions), made with ❤️
+Unofficial API of [javascript-questions](https://github.com/lydiahallie/javascript-questions), made with ❤️
 
 ## Live demo
 
