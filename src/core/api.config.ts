@@ -1,11 +1,11 @@
 import { registerAs } from "@nestjs/config";
-import { boolean, number, object, string } from "joi";
+import * as Joi from "joi";
 
-export const validationSchema = object({
-  NODE_ENV: string().valid("development", "production", "test").required(),
-  PORT: number().default(3000),
-  POSTGRES_URL: string().required(),
-  SSL_CONNECTION: boolean(),
+export const validationSchema = Joi.object({
+  NODE_ENV: Joi.string().valid("development", "production", "test").required(),
+  PORT: Joi.number().default(3000),
+  POSTGRES_URL: Joi.string().required(),
+  SSL_CONNECTION: Joi.boolean(),
 });
 
 export const apiConfig = registerAs("api-config", () => {

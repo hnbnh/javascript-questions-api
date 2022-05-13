@@ -3,6 +3,7 @@ import { InjectRepository } from "@mikro-orm/nestjs";
 import { QuizEntity } from "../shared";
 import { EntityRepository } from "@mikro-orm/postgresql";
 import { FindQuizDto } from "./dto";
+import { PopulateHint, QueryOrder } from "@mikro-orm/core";
 
 @Injectable()
 export class QuizzesService {
@@ -16,7 +17,8 @@ export class QuizzesService {
       {
         limit,
         offset,
-        populate: { translations: { options: true } },
+        populate: ["translations.options"],
+        populateWhere: PopulateHint.INFER,
       },
     );
 
@@ -28,8 +30,9 @@ export class QuizzesService {
       { translations: { language: { id } } },
       {
         limit: 1,
-        populate: { translations: { options: true } },
-        orderBy: { "RANDOM()": "ASC" },
+        populate: ["translations.options"],
+        populateWhere: PopulateHint.INFER,
+        orderBy: { "RANDOM()": QueryOrder.ASC } as any,
       },
     );
   }
