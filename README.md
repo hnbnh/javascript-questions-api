@@ -1,51 +1,88 @@
-# Unofficial JavaScript Questions API
+<br />
+<div align="center">
+  <div align="center">
+    <img src="docs/images/javascript.svg" height="80">
+  </div>
+
+  <br />
+  <h1 align="center">JavaScript Questions API</h1>
+
+  <p align="center">
+    <a href="https://javascript-questions-api.herokuapp.com/docs/">Live Demo</a>
+  </p>
+
+  <img src="docs/images/preview.png">
+</div>
+
+- [Description](#description)
+- [Getting started](#getting-started)
+  - [Install with docker-compose](#install-with-docker-compose)
+  - [Manual installation](#manual-installation)
+- [Resources](#resources)
+- [License](#license)
 
 ## Description
 
 Unofficial API of [javascript-questions](https://github.com/lydiahallie/javascript-questions), made with ❤️
 
-## Live demo
+## Getting started
 
-Have a look at [Documentation](https://javascript-questions-api.herokuapp.com/docs/)
+### Install with docker-compose
 
-![image](docs/preview.png)
+1. Create .env file (see .env.example)
 
-## Installation
-
-1. Clone this repo
-2. Run `yarn` or `npm install` to install dependencies
+2. Run the following commands:
 
 ```bash
-$ yarn
+docker-compose build
+docker-compose up
+
+docker exec -it nest-api npm run db:migrate
+docker exec -it nest-api npm run db:seed
+```
+
+### Manual installation
+
+1. Clone this repo
+2. Run `pnpm install` or `npm install` or `yarn` to install dependencies
+
+```bash
+$ pnpm install
+# or
+$ npm install
 ```
 
 3. Prepare a postgres database, or create a new one with docker-compose
 
 ```bash
-$ docker-compose up -d
+$ docker-compose -f docker-compose.db.yml up -d
 ```
 
 4. Migrate and seed the database
 
 ```bash
-$ npx mikro-orm migration:up
-$ npx mikro-orm seeder:run
+$ pnpm db:migrate
+$ pnpm db:seed
+
+# or
+$ npm run db:migrate
+$ npm run db:seed
 ```
 
-5. Create a `.env` file based on `.env.example`, e.g.
+5. Create .env file (see .env.example)
 
-```text
-NODE_ENV=production
-PORT=3000
-POSTGRES_URL=postgresql://postgres:javascript-questions-api@localhost:5432/postgres
-SSL_CONNECTION=true
-```
-
-7. Start server
+6. Start server
 
 ```bash
-$ yarn start:prod
+$ pnpm start:prod
+# or
+$ npm run start:prod
 ```
+
+## Resources
+
+[Carbon](https://github.com/carbon-app/carbon)
+[JavaScript Logo](https://iconscout.com/icon/javascript-2752148)
 
 ## License
 
