@@ -18,6 +18,7 @@
 - [Getting started](#getting-started)
   - [Install with docker-compose](#install-with-docker-compose)
   - [Manual installation](#manual-installation)
+- [Support](#support)
 - [Resources](#resources)
 - [License](#license)
 
@@ -78,6 +79,11 @@ $ pnpm start:prod
 # or
 $ npm run start:prod
 ```
+
+## Support
+
+- [Buy me a coffee](buymeacoffee.com/hnbnh)
+- BTC: 152Qsb3Dsds4t6PnAAYqQp9WRPSHRFZ5Hy
 
 ## Resources
 
