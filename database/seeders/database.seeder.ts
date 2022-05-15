@@ -1,7 +1,7 @@
-import { EntityManager } from '@mikro-orm/core';
-import { Seeder } from '@mikro-orm/seeder';
-import fetch from 'node-fetch';
-import { LanguageEntity, QuizEntity, QuizOptionEntity, QuizTranslationEntity } from '../../src/shared';
+import { EntityManager } from "@mikro-orm/core";
+import { Seeder } from "@mikro-orm/seeder";
+import fetch from "node-fetch";
+import { LanguageEntity, QuizEntity, QuizOptionEntity, QuizTranslationEntity } from "../../src/shared";
 
 const baseUrl = `https://raw.githubusercontent.com/lydiahallie/javascript-questions/master`;
 const languageRegex = /- \[(?<name>.*?)\]\((?<path>.*?)\)/gm;
@@ -21,9 +21,9 @@ export class DatabaseSeeder extends Seeder {
       ...(await Promise.all(availableLanguages.map(async (l) => (await fetch(`${baseUrl}/${l.path}`)).text()))),
     ];
 
-    const languagesMatches: ILanguageMatch[] = [{ name: '🇬🇧 English', path: '/en-US/' }, ...availableLanguages];
+    const languagesMatches: ILanguageMatch[] = [{ name: "🇬🇧 English", path: "/en-US/" }, ...availableLanguages];
     const allLanguages = languagesMatches.map(({ name, path }, i) => {
-      return em.create(LanguageEntity, { id: i + 1, name, code: path.split('/')[1] });
+      return em.create(LanguageEntity, { id: i + 1, name, code: path.split("/")[1] });
     });
     em.persist(allLanguages);
 

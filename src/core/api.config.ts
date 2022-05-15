@@ -4,7 +4,11 @@ import * as Joi from "joi";
 export const validationSchema = Joi.object({
   NODE_ENV: Joi.string().valid("development", "production", "test").required(),
   PORT: Joi.number().default(3000),
-  POSTGRES_URL: Joi.string().required(),
+  POSTGRES_HOST: Joi.string(),
+  POSTGRES_PORT: Joi.number(),
+  POSTGRES_USER: Joi.string(),
+  POSTGRES_PASSWORD: Joi.string(),
+  POSTGRES_DB: Joi.string(),
   SSL_CONNECTION: Joi.boolean(),
 });
 
@@ -18,7 +22,10 @@ export const apiConfig = registerAs("api-config", () => {
     port: Number(process.env.PORT),
     database: {
       postgres: {
-        url: process.env.POSTGRES_URL,
+        host: process.env.POSTGRES_HOST,
+        db: process.env.POSTGRES_DB,
+        user: process.env.POSTGRES_USER,
+        password: process.env.POSTGRES_PASSWORD,
       },
     },
   };

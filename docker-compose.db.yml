@@ -1,20 +1,7 @@
 version: "3.9"
 
 services:
-  api:
-    container_name: nest-api
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "${PORT}:${PORT}"
-    depends_on:
-      - db
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
   db:
-    container_name: pgdb
     image: postgres
     ports:
       - "${POSTGRES_PORT}:${POSTGRES_PORT}"

@@ -1,0 +1,12 @@
+.git
+.*ignore
+
+dist
+node_modules
+coverage
+temp
+
+docs
+
+Dockerfile
+README.md
